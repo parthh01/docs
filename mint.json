@@ -22,8 +22,8 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://platform.critiquebrowser.app/"
+    "name": "Keys & Billing",
+    "url": "https://platform.critiquebrowser.app/en/billing"
   },
   "tabs": [
     {
@@ -42,6 +42,11 @@
       "name": "Join Community",
       "icon": "discord",
       "url": "https://discord.gg/DCpxerTKHm"
+    },
+    {
+      "name": "get API Key", 
+      "icon": "key", 
+      "url": "https://platform.critiquebrowser.app/en/billing"
     }
   ],
   "navigation": [
