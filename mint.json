@@ -27,13 +27,13 @@
   },
   "tabs": [
     {
-      "name": "API Documentation",
+      "name": "API Reference",
       "url": "api-reference"
     }
   ],
   "anchors": [
     {
-      "name": "API Documentation",
+      "name": "API Reference",
       "openapi": "https://api.critiquebrowser.app/openapi.json",
       "url": "api-reference",
       "icon": "square-terminal"
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "API Reference",
       "pages": [
         "api-reference/introduction"
       ]
