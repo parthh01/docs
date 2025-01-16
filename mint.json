@@ -38,14 +38,15 @@
       "url": "https://mintlify.com/docs"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "API Reference",
+      "openapi": "https://api.critiquebrowser.app/openapi.json",
+      "url": "api-reference",
+      "icon": "square-terminal"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://discord.gg/DCpxerTKHm"
     }
   ],
   "navigation": [
