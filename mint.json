@@ -27,24 +27,19 @@
   },
   "tabs": [
     {
-      "name": "API Reference",
+      "name": "API Documentation",
       "url": "api-reference"
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "API Reference",
+      "name": "API Documentation",
       "openapi": "https://api.critiquebrowser.app/openapi.json",
       "url": "api-reference",
       "icon": "square-terminal"
     },
     {
-      "name": "Community",
+      "name": "Join Community",
       "icon": "discord",
       "url": "https://discord.gg/DCpxerTKHm"
     }
