@@ -68,12 +68,6 @@
         "essentials/navigation",
         "essentials/reusable-snippets"
       ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "api-reference/introduction"
-      ]
     }
   ],
   "footerSocials": {
