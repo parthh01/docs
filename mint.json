@@ -18,12 +18,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:support@critiquebrowser.app"
+      "url": "mailto:support@critique-labs.ai"
     }
   ],
   "topbarCtaButton": {
-    "name": "Keys & Billing",
-    "url": "https://platform.critiquebrowser.app/en/billing"
+    "name": "Dashboard",
+    "url": "https://critique-labs.ai/en/dashboard"
   },
   "tabs": [
     {
@@ -34,7 +34,7 @@
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "https://api.critiquebrowser.app/openapi.json",
+      "openapi": "https://api.critique-labs.ai/openapi.json",
       "url": "api-reference",
       "icon": "square-terminal"
     },
@@ -46,7 +46,7 @@
     {
       "name": "API Keys", 
       "icon": "key", 
-      "url": "https://platform.critiquebrowser.app/en/billing"
+      "url": "https://critique-labs.ai/en/billing"
     }
   ],
   "navigation": [
