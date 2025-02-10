@@ -55,13 +55,6 @@
       "pages": [
         "introduction"
       ]
-    }, 
-    {
-      "group": "API", 
-      "pages": [
-        "api/terms-of-service",
-        "api/privacy-policy"
-      ]
     }
   ],
   "footerSocials": {
