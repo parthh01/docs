@@ -3,7 +3,8 @@
   "name": "Critique AI Documentation",
   "logo": {
     "dark": "logo/banner_logo_dark.png",
-    "light": "logo/banner_logo_dark.png"
+    "light": "logo/banner_logo_dark.png",
+    "href": "https://critique-labs.ai"
   },
   "favicon": "https://critiquebrowser.app/_next/image?url=%2Fimages%2Ficon_only.png&w=96&q=75",
   "colors": {
