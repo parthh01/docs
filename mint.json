@@ -27,8 +27,12 @@
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Browser Extension",
+      "url": "browser-extension"
+    },
+    {
+      "name": "API Platform",
+      "url": "api-platform"
     }
   ],
   "anchors": [
@@ -52,8 +56,32 @@
   "navigation": [
     {
       "group": "Get Started",
+      "pages": ["introduction"]
+    },
+    {
+      "group": "Browser Extension",
       "pages": [
-        "introduction"
+        "browser-extension/overview",
+        "browser-extension/installation",
+        "browser-extension/fact-checking",
+        "browser-extension/image-analysis",
+        "browser-extension/text-analysis",
+        "browser-extension/chat-with-tabs",
+        "browser-extension/privacy-policy",
+        "browser-extension/terms-of-service"
+      ]
+    },
+    {
+      "group": "API Platform",
+      "pages": [
+        "api-platform/overview",
+        "api-platform/getting-started",
+        "api-platform/api-studio",
+        "api-platform/marketplace",
+        "api-platform/publishing",
+        "api-platform/consuming",
+        "api-platform/privacy-policy",
+        "api-platform/terms-of-service"
       ]
     }
   ],
