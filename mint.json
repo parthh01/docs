@@ -2,11 +2,11 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Critique AI Documentation",
   "logo": {
-    "dark": "logo/banner_logo_dark.png",
-    "light": "logo/banner_logo_dark.png",
+    "dark": "/logo/banner_logo_dark.png",
+    "light": "/logo/banner_logo_dark.png",
     "href": "https://critique-labs.ai"
   },
-  "favicon": "https://critiquebrowser.app/_next/image?url=%2Fimages%2Ficon_only.png&w=96&q=75",
+  "favicon": "/images/icon_only.png",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
