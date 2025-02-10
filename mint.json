@@ -29,10 +29,6 @@
     {
       "name": "API Reference",
       "url": "api-reference"
-    },
-    {
-      "name": "API Marketplace",
-      "url": "api-marketplace"
     }
   ],
   "anchors": [
@@ -58,6 +54,13 @@
       "group": "Get Started",
       "pages": [
         "introduction"
+      ]
+    }, 
+    {
+      "group": "API", 
+      "pages": [
+        "api/terms-of-service",
+        "api/privacy-policy"
       ]
     }
   ],
