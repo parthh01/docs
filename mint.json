@@ -76,7 +76,6 @@
       "group": "API Platform",
       "pages": [
         "api-platform/overview",
-        "api-platform/getting-started",
         "api-platform/api-studio",
         "api-platform/marketplace",
         "api-platform/publishing",
