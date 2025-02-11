@@ -1,64 +1,189 @@
 ---
-title: 'Consuming APIs'
-description: 'Integrate marketplace APIs into your applications'
+title: 'Example API Integration Guide'
+description: 'Learn how to integrate the Example API into your application'
 ---
 
-## Getting Started
+## Getting Started with Example API
 
-<Steps>
-  <Step title="Find APIs">
-    Browse the marketplace for suitable APIs
-  </Step>
-  
-  <Step title="Test">
-    Try the API in our interactive console
-  </Step>
-  
-  <Step title="Subscribe">
-    Choose a pricing plan and get API keys
-  </Step>
-  
-  <Step title="Integrate">
-    Implement the API in your application
-  </Step>
-</Steps>
+This guide will walk you through integrating our Example API into your application. This API allows you to fetch and analyze data programmatically.
 
-## Integration Guide
+### Prerequisites
+- An API key from the Critique AI marketplace
+- Basic knowledge of JavaScript/HTTP requests
+- A development environment set up
 
-### Authentication
-- API key management
-- Token-based auth
-- OAuth integration
-- Key rotation
+## Step-by-Step Integration
 
-### Making Requests
-- REST endpoints
-- Request formatting
-- Error handling
-- Rate limiting
+### 1. Authentication Setup
 
-### SDKs & Libraries
-- Official SDKs
-- Community libraries
-- Code examples
-- Integration tutorials
+First, you'll need to include your API key in the request headers:
+
+```javascript
+const headers = {
+    'Content-Type': 'application/json',
+    'X-API-KEY': 'your-api-key-here'
+};
+```
+
+<Note>
+Never expose your API key in client-side code. Always store it securely in environment variables or a secure configuration system.
+</Note>
+
+### 2. Making API Requests
+
+Here's a complete example of how to fetch data:
+
+```javascript
+async function fetchData(input) {
+    const url = "https://api.critique-labs.ai/v1/published-service/example-api";
+    
+    const requestData = {
+        "input": input  // Your input parameter
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-Key': process.env.CRITIQUE_API_KEY
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        return {
+            formattedOutput: data.response,
+            sources: data.context
+        };
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
+    }
+}
+```
+
+### 3. Handling the Response
+
+The API returns two main components:
+
+1. `response`: The formatted output data
+2. `context`: Source information and metadata
+
+```javascript
+// Example usage
+try {
+    const result = await fetchData("example-input");
+    console.log("Data:", result.formattedOutput);
+    console.log("Sources:", result.sources);
+} catch (error) {
+    // Handle any errors
+}
+```
+
+## Response Format
+
+The API returns data in the following structure:
+
+```javascript
+{
+    "response": {
+        // Formatted output data
+    },
+    "context": {
+        // Source information and metadata
+    }
+}
+```
 
 ## Best Practices
 
-<CardGroup cols={2}>
-  <Card title="Security" icon="shield-check">
-    Secure API key storage and usage
-  </Card>
-  
-  <Card title="Performance" icon="bolt">
-    Optimize request patterns
-  </Card>
-  
-  <Card title="Monitoring" icon="chart-line">
-    Track API usage and costs
-  </Card>
-  
-  <Card title="Error Handling" icon="triangle-exclamation">
-    Implement robust error handling
-  </Card>
-</CardGroup> 
+1. **Rate Limiting**
+   - Remember, while your balance is 0, your rate limit is 10 requests per minute. When you add credits, your rate limit will increase to 100 requests per minute.
+   - Implement proper rate limiting in your application
+   - Cache responses when possible
+   - Use batch requests when available
+
+2. **Error Handling**
+   - Always implement robust error handling
+   - Provide meaningful error messages to users
+   - Log errors for debugging
+
+3. **Security**
+   - Store API keys securely
+   - Use environment variables
+   - Implement proper access controls
+
+## Example Implementation
+
+Here's a complete example using async/await and proper error handling:
+
+```javascript
+require('dotenv').config();  // For loading environment variables
+
+class APIService {
+    constructor(apiKey) {
+        this.apiKey = apiKey;
+        this.baseUrl = "https://api.critique-labs.ai/v1/published-service/example-api";
+    }
+
+    async getData(input) {
+        try {
+            const result = await this.makeRequest(input);
+            return this.processResponse(result);
+        } catch (error) {
+            this.handleError(error);
+        }
+    }
+
+    async makeRequest(input) {
+        const response = await fetch(this.baseUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-Key': this.apiKey
+            },
+            body: JSON.stringify({ input })
+        });
+
+        return response.json();
+    }
+
+    processResponse(data) {
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        return {
+            outputData: data.response,
+            sources: data.context
+        };
+    }
+
+    handleError(error) {
+        // Implement your error handling logic
+        console.error("API Error:", error);
+        throw error;
+    }
+}
+
+// Usage
+const apiService = new APIService(process.env.CRITIQUE_API_KEY);
+apiService.getData("example-input")
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+```
+
+## Need Help?
+
+If you encounter any issues or need support:
+- Check our [API Documentation](/api-docs)
+- Visit our [Support Portal](/support)
+- Contact us at api-support@critique-labs.ai
+
+Remember to replace placeholder values with your actual API credentials and endpoints.
+```
