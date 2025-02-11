@@ -1,77 +1,139 @@
 ---
-title: 'Publishing APIs'
-description: 'Share your APIs with the Critique AI community'
+title: 'Publishing Your API on Critique Marketplace'
+description: 'Learn how to monetize your custom APIs through the Critique marketplace'
 ---
+## Revenue Model
+
+When Pro users utilize your published API, you earn credits based on their usage:
+
+- You earn $0.05 per million tokens when Pro users use your published APIs
+- Enterprise usage provides further revenue opportunities
+
+<Callout type="info">
+  The more users that integrate your API into their applications, the more credits you earn!
+</Callout>
 
 ## Publishing Process
 
 <Steps>
-  <Step title="Prepare API">
-    Ensure your API is:
-    - Fully tested
-    - Well documented
-    - Properly versioned
-    - Performance optimized
+  <Step title="Design & Test">
+    First design a private API at [https://critique-labs.ai/design](https://critique-labs.ai/design):
+    - Provide an initial prompt to design the API (a chat-like interface will be available soon)
+    - Review the API inputs and make sure they make sense for the API you want to create
+    - Check the generated endpoint stub (i.e., /my-cool-api) and make sure it looks right. Note that sometimes a unique identifier is added to the end of the stub (i.e., /my-cool-api/{unique-id}). This is fine and expected.
+    - IMPORTANT: Check the configuration instructions and make sure you cover all the cases you want to support as well as the cases you don't want to support
+    - MOST IMPORTANT: Test the API to ensure it works as expected. If you don't like the output, you can edit the configuration instructions and test again.
   </Step>
-  
-  <Step title="Set Pricing">
-    Configure your monetization:
-    - Free tier limits
-    - Paid tier pricing
-    - Enterprise options
-    - Revenue share settings
+
+  <Step title="Complete Publication Form">
+    Required information:
+    - API Title
+    - Description
+    - Project URL (optional)
+    - Category selection
+    - Tags (recommended)
   </Step>
-  
-  <Step title="Submit">
-    Complete the marketplace listing:
-    - API description
-    - Use cases
-    - Sample code
+
+  <Step title="Review & Confirm">
+    <Callout type="warning">
+      Once published, APIs cannot be deleted to maintain reliability for dependent users.
+    </Callout>
+    
+    Review:
+    - API documentation
+    - Usage examples
     - Integration guides
+    - Terms of service
   </Step>
-  
-  <Step title="Launch">
-    Make your API public and start earning
+
+  <Step title="Monitor & Maintain">
+    Track:
+    - Usage statistics
+    - User feedback
+    - Performance metrics
+    - Revenue generation
+    - Create new versions of your API if needed
   </Step>
 </Steps>
 
-## Requirements
+## API Visibility
 
-### Technical Requirements
-- 99.9% uptime guarantee
-- Response time < 500ms
-- Error rate < 0.1%
-- Proper error handling
+Your published API will be showcased in the marketplace with:
 
-### Documentation Requirements
-- Clear API description
-- Endpoint documentation
-- Authentication guide
-- Usage examples
-- Rate limit details
+<CardGroup cols={2}>
+  <Card title="Basic Info">
+    - API title and description
+    - Your username as publisher
+    - Last update date
+    - Category and tags
+  </Card>
+  
+  <Card title="Performance Metrics">
+    - Usage statistics
+    - Average response time
+    - Active user count
+    - User ratings
+  </Card>
+</CardGroup>
 
-### Support Requirements
-- Issue response time
-- Update frequency
-- Version maintenance
-- User support channels
+## API Usage
+
+Your API listing includes three main sections for users to interact with:
+
+### 1. General API Information
+- API Title and Description
+- Input Request and Output Response Formats
+- Categories and Tags
+- Project URL (optional)
+- Total Unique Users who have used your API
+- Total Calls made on your API
+
+### 2. Code Samples
+Example implementations will automatically be generated for your API in:
+- JavaScript
+- Python
+- cURL
+
+### 3. Test Endpoint
+An interactive environment where users can:
+- Test your API with sample inputs
+- Validate responses
+- Check latency and average tokens per call
 
 ## Best Practices
 
 <CardGroup cols={2}>
-  <Card title="Documentation" icon="book">
-    Provide comprehensive guides and examples
+  <Card title="Clear Description">
+    Write concise but detailed explanations of your API's functionality and use cases
   </Card>
   
-  <Card title="Monitoring" icon="chart-line">
-    Track usage patterns and performance
+  <Card title="Proper Documentation">
+    Include comprehensive guides, examples, and edge cases
   </Card>
   
-  <Card title="Support" icon="headset">
-    Offer responsive user assistance
+  <Card title="Appropriate Tags">
+    Add relevant tags to improve marketplace discoverability
   </Card>
   
-  <Card title="Updates" icon="arrows-rotate">
-    Maintain and improve your API
+  <Card title="Regular Updates">
+    Maintain and improve your API based on user feedback and usage patterns
   </Card>
-</CardGroup> 
+</CardGroup>
+
+## Support
+
+For questions about the publishing process:
+- Email: support@critique-labs.ai
+- Documentation: [API Reference](https://docs.critique-labs.ai)
+- Discord: [Join our community](https://discord.gg/critique)
+
+## Terms of Service
+
+Before publishing, review our:
+- [API Terms of Service](/docs/api-terms-of-service)
+- [Privacy Policy](/docs/api-privacy-policy)
+- [Revenue Sharing Agreement](/docs/revenue-sharing)
+
+<Callout type="warning">
+  Ensure your API complies with our terms of service and content guidelines.
+</Callout>
