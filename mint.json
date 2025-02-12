@@ -62,11 +62,10 @@
     {
       "group": "Browser Extension",
       "pages": [
-        "browser-extension/overview",
         "browser-extension/installation",
+        "browser-extension/getting-started",
         "browser-extension/fact-checking",
         "browser-extension/image-analysis",
-        "browser-extension/text-analysis",
         "browser-extension/chat-with-tabs",
         "browser-extension/privacy-policy",
         "browser-extension/terms-of-service"
