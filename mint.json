@@ -80,7 +80,8 @@
         "api-platform/publishing",
         "api-platform/consuming",
         "api-platform/privacy-policy",
-        "api-platform/terms-of-service"
+        "api-platform/terms-of-service",
+        "api-platform/revenue-sharing-agreement"
       ]
     }
   ],
