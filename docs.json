@@ -61,10 +61,10 @@
             ]
           },
           {
-            "tab": "Data analytics platform",
+            "tab": "Data Analytics Suite",
             "groups": [
               {
-                "group": "Data analytics platform",
+                "group": "Data Analytics Suite",
                 "pages": [
                   "critique-db/overview",
                   "critique-db/privacy-policy",
