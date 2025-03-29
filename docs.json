@@ -59,6 +59,19 @@
                 ]
               }
             ]
+          },
+          {
+            "tab": "Data analytics platform",
+            "groups": [
+              {
+                "group": "Data analytics platform",
+                "pages": [
+                  "critique-db/overview",
+                  "critique-db/privacy-policy",
+                  "critique-db/terms-of-service"
+                ]
+              }
+            ]
           }
         ]
       },
