@@ -1,6 +1,65 @@
 ---
-title: 'Google Sheets Addon. Have Critique Agentic Search on your Google Sheets.'
-description: 'Ask questions, extract intelligent insights.'
+title: "Critique AI for Google Sheets - Documentation"
+description: "Learn how to use the Critique AI Google Sheets add-on to perform agentic search queries within your spreadsheets."
 ---
 
-TBD 
+# Critique AI for Google Sheets
+
+Critique AI brings **agentic search** directly into Google Sheets, allowing you to perform **LLM-powered, in-line cited** queries within your spreadsheet using the `CRITIQUE` function.
+
+## **Getting Started**
+
+### **Installation**
+1. Install the Critique AI Google Sheets add-on from the Google Workspace Marketplace.
+2. Open Google Sheets and navigate to `Extensions > Critique API > Set API Key`.
+3. Enter your **Critique AI API Key** (available at [Critique Labs Dashboard](https://critique-labs.ai/en/dashboard)).
+
+### **Basic Usage**
+The `CRITIQUE` function fetches deeply researched, in-line cited responses based on a search term.
+
+#### **Function Syntax**
+```excel
+=CRITIQUE(searchTerm, [image_url], [exclude_domains], [show_sources])
+```
+
+#### **Parameters**
+| Parameter         | Required | Type    | Description |
+|------------------|----------|---------|-------------|
+| `searchTerm`      | Yes      | String  | The query you want to search. |
+| `image_url`       | No       | String  | URL of an image to analyze. |
+| `exclude_domains` | No       | String  | Comma-separated websites you don't want the AI to use. |
+| `show_sources`    | No       | Boolean | `TRUE` (default) to include citations. |
+
+#### **Example Queries**
+```excel
+=CRITIQUE("What is quantum computing?")
+=CRITIQUE("Latest AI research", , "cnn.com,foxnews.com", TRUE)
+=CRITIQUE("what is the latest stock price of the company in the image? ", "https://example.com/image.jpg")
+```
+
+## **Limitations**
+- **Rate Limits:** Free tier users can make up to **10 API calls per minute**.
+- **Token Limits:** No token limit, but large queries may take longer to process.
+- **Dependency on API Key:** Users must set an API key before using the function.
+- **Excessive Requests:** Overuse may result in rate-limiting errors (`Rate limited, please try again in a minute`).
+
+## **Privacy Policy**
+Critique AI does not store or share your search queries. However, **users must not share their API key** or embed it in shared Google Sheets.
+
+### **Data Handling**
+- Queries are **processed in real-time** and not stored.
+- API keys are stored **locally within the user's Google Sheets** and are not transmitted elsewhere.
+- Image URLs provided are only used for analysis and are not retained.
+
+## **Terms of Service**
+By using the Critique AI Google Sheets add-on, you agree to the following terms:
+- **No Warranty:** The service is provided "as is" without guarantees of uptime or accuracy.
+- **Liability Disclaimer:** Critique AI is not responsible for any **financial, legal, or reputational damages** from incorrect or misinterpreted search results.
+- **API Key Security:** Users are responsible for keeping their API key private. **DO NOT SHARE API KEYS** or publish sheets containing them.
+- **Prohibited Use:** Users must not use the API for illegal activities or misinformation.
+
+For support, visit the [Critique AI Help Center](https://critique-labs.ai/en/help).
+
+---
+Start using **Critique AI in Google Sheets today** and streamline your research workflow!
+
