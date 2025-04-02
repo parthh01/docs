@@ -72,6 +72,17 @@
                 ]
               }
             ]
+          },
+          {
+            "tab": "Google Sheets Addon",
+            "groups": [
+              {
+                "group": "Google Sheets Addon",
+                "pages": [
+                  "sheets-addon/overview"
+                ]
+              }
+            ]
           }
         ]
       },
