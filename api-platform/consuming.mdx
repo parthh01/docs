@@ -104,7 +104,7 @@ The API returns data in the following structure:
 ## Best Practices
 
 1. **Rate Limiting**
-   - Remember, while your balance is 0, your rate limit is 10 requests per minute. When you add credits, your rate limit will increase to 100 requests per minute.
+   - Remember, while your balance is 0, your rate limit is *10 requests per minute*. When you add credits, your rate limit will increase to 100 requests per minute. See [API rate limits](/api-reference/rate-limits) for peak throttling, fair use, and full details.
    - Implement proper rate limiting in your application
    - Cache responses when possible
    - Use batch requests when available

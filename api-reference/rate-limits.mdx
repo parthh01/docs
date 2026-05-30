@@ -1,0 +1,55 @@
+---
+title: "Rate limits"
+description: "Request rate limits by plan for the Critique Flow API"
+---
+
+## Overview
+
+Rate limits apply per API key and depend on your plan. Limits are enforced across Critique Flow API endpoints (including `POST /v1/search` and `GET /v1/ws/search`).
+
+<Note>
+These limits are not currently defined in the published OpenAPI document. They are documented here and on the [pricing page](https://critique-labs.ai/en/pricing). When limits are added to the OpenAPI spec, this page will stay in sync with `info.description` and endpoint `429` responses.
+</Note>
+
+## Limits by plan
+
+| Plan | Rate limit |
+|------|------------|
+| **Free (Starter)** | *10 API calls per minute* |
+| **Pro** | 100 API calls per minute |
+| **Enterprise** | 5,000+ API calls per minute (custom) |
+
+## Free tier during peak demand
+
+The free tier may be **throttled below the stated limit** during peak usage so we can prioritize paid tier traffic. This is temporary and depends on overall platform load; you may see slower responses or stricter rate limiting even when you are under 10 requests per minute.
+
+We reserve the right to throttle the free tier when needed to support paid tier usage, paid tier usage itself however will never be subject to throttling. 
+
+## Billing and tier behavior
+
+- **Free tier:** Applies when you are on the Starter plan (no paid usage). The **10 requests per minute** limit applies.
+- **Pro tier:** **100 requests per minute** when you have an active Pro plan or paid usage as described on [pricing](https://critique-labs.ai/en/pricing).
+- **Token usage:** There is no token cap on the free tier; large queries may take longer to process.
+
+## Fair use and abuse prevention
+
+Creating **multiple accounts** (or otherwise splitting traffic across identities) to **circumvent rate limits** is prohibited.
+
+If we determine that accounts are being used to bypass limits, we reserve the right to **suspend or permanently ban** those accounts, with or without prior notice.
+
+## When you are rate limited
+
+If you exceed your limit, the API may return an error such as:
+
+```
+Rate limited, please try again in a minute
+```
+
+<Tip>
+Implement exponential backoff, respect `Retry-After` when present, and cache responses where possible. See [Search](/api-reference/search) for endpoint details.
+</Tip>
+
+## Related
+
+- [Pricing](https://critique-labs.ai/en/pricing) — current plan limits
+- [API Keys](https://critique-labs.ai/en/billing) — manage your key and plan

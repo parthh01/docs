@@ -101,11 +101,22 @@
       },
       {
         "anchor": "API Reference",
-        "openapi": {
-          "source": "https://api.critique-labs.ai/openapi.json",
-          "directory": "api-reference"
-        },
-        "icon": "square-terminal"
+        "icon": "square-terminal",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/rate-limits"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "openapi": {
+              "source": "https://api.critique-labs.ai/openapi.json",
+              "directory": "api-reference"
+            }
+          }
+        ]
       },
       {
         "anchor": "Join Community",
