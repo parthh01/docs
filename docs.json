@@ -22,6 +22,14 @@
                 "pages": [
                   "introduction"
                 ]
+              },
+              {
+                "group": "Legal",
+                "pages": [
+                  "terms-of-service",
+                  "privacy-policy",
+                  "ai-disclosure"
+                ]
               }
             ]
           },
