@@ -26,6 +26,19 @@
             ]
           },
           {
+            "tab": "Critique Chat",
+            "groups": [
+              {
+                "group": "Legal",
+                "pages": [
+                  "critique-chat/terms-of-service",
+                  "critique-chat/privacy-policy",
+                  "critique-chat/indemnification"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "Browser Extension",
             "groups": [
               {
