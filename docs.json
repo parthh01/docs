@@ -1,4 +1,12 @@
 {
+  "contextual": {
+    "options": [
+      "copy",
+      "chatgpt",
+      "claude",
+      "view"
+    ]
+  },
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Critique AI Documentation",
