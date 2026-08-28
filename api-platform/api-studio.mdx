@@ -1,26 +1,39 @@
 ---
 title: 'API Studio'
-description: 'Create and deploy APIs using natural language'
+description: 'Create, test, and integrate a private API from the browser'
 ---
 
 ## Overview
 
-Critique APIs are versatile tools that can search the web for information.
-The API Studio is where you transform your ideas in simple words into these powerful APIs.
+API Studio turns a natural-language description into a private, callable research
+endpoint. The manual builder is available at
+[critique-labs.ai/en/design](https://critique-labs.ai/en/design).
+
+If you want a coding agent to create and integrate the endpoint for you, select
+**Set up an agent** beside the API description form. You can copy the setup
+prompt, open it in ChatGPT or Claude, or download the skill package for Codex,
+Claude Code, Cursor, and other clients that support agent skills.
+
+<Note>
+  The manual builder and agent workflow create the same kind of private API.
+  Endpoints created by an agent appear under **Saved designs** in API Studio.
+</Note>
 
 ## Creating an API
 
 <Steps>
   <Step title="Describe Your API">
     Write a natural language description of your desired API functionality:
+
     - Purpose and use cases
-    - Expected inputs and outputs
-    - Business logic and rules
-    - How to handle missing information
+    - Required inputs and exact output fields
+    - Research behavior and preferred sources
+    - How to handle missing or conflicting information
   </Step>
   
   <Step title="Configure Settings">
     Customize your API configuration:
+
     - Input request format
     - Output response format
     - Detailed API instructions
@@ -28,22 +41,37 @@ The API Studio is where you transform your ideas in simple words into these powe
   
   <Step title="Test Your API">
     Test your API with sample requests and responses:
+
     - Enter an input request
     - View the output response
-    - Check the API latency and average tokens per call
+    - Review the returned source context
     - Revise API instructions if needed
   </Step>
+
+  <Step title="Integrate">
+    In the **Run** step, copy the endpoint URL, request schema, example payload,
+    or generated JavaScript, Python, and cURL code. Keep the API key in the
+    `CRITIQUE_API_KEY` environment variable.
+  </Step>
 </Steps>
+
+## Build with an agent
+
+See [Build APIs with an agent](/api-platform/agent-created-apis) for setup,
+endpoint lifecycle commands, and the runtime response contract.
 
 ## Best Practices
 
 ### Writing Descriptions
+
 - Be specific about functionality
-- Include edge cases
-- Define error scenarios
-- Specify validation rules
+- Name every required input
+- Define the exact output shape and value types
+- State freshness and source requirements
+- Explain how to represent missing information
 
 ### Testing
+
 - Validate all endpoints
 - Test edge cases
 - Check error responses
@@ -51,8 +79,8 @@ The API Studio is where you transform your ideas in simple words into these powe
 
 
 ## Pricing
+
 - **$0.50 per million tokens** (including internal processing tokens).
 - Rate limits exist for the free and pro tiers. See [API rate limits](/api-reference/rate-limits) and the [pricing page](https://critique-labs.ai/en/pricing) for details.
 
-
-Click on API Reference on the right to see the spec for the endpoints we offer. 
+Use the **API Reference** navigation to inspect the complete HTTP specification.

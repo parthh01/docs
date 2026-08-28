@@ -79,6 +79,7 @@
                 "pages": [
                   "api-platform/overview",
                   "api-platform/api-studio",
+                  "api-platform/agent-created-apis",
                   "api-platform/marketplace",
                   "api-platform/publishing",
                   "api-platform/consuming",

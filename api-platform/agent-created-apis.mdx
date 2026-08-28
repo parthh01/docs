@@ -1,0 +1,267 @@
+---
+title: 'Build agentic search endpoints with an agent'
+description: 'Turn one research task into a fully functioning, hosted search endpoint with structured output and cited sources'
+---
+
+Critique API is the all-in-one agentic search endpoint builder. Give a coding
+agent one natural-language research task and it can create a fully functioning,
+hosted endpoint with live web search, source retrieval, citations, structured
+JSON, and a callable contract.
+
+Critique handles the search crawler, retrieval pipeline, model workflow,
+structured-output layer, and endpoint deployment. The agent creates the
+endpoint, reads the server-returned schemas and examples, calls it immediately,
+and integrates it into your project with ordinary HTTPS.
+
+## Set up your agent
+
+<Steps>
+  <Step title="Create an API key">
+    Create a key under [Billing & API Keys](https://critique-labs.ai/en/billing),
+    then make it available to your coding agent as an environment variable.
+
+    ```bash
+    export CRITIQUE_API_KEY="your-api-key"
+    ```
+
+    Never paste the key into a prompt, source file, URL, or commit.
+  </Step>
+
+  <Step title="Open agent setup">
+    Open [API Studio](https://critique-labs.ai/en/design) and select
+    **Set up an agent** beside the manual API description form.
+
+    - **Copy prompt** copies the current, server-provided integration prompt.
+    - **Open ChatGPT** or **Open Claude** copies the prompt and opens a new chat.
+    - **Download skill** downloads the transport-neutral
+      `create-critique-apis` instructions and API contract.
+
+    A browser chat can help plan the endpoint, but it still needs a connected
+    tool or coding environment that can read `CRITIQUE_API_KEY` and make HTTPS
+    requests in order to create or run one.
+  </Step>
+
+  <Step title="Give the agent your requirement">
+    Describe the reusable behavior, required inputs, exact output fields,
+    freshness requirements, and preferred sources. For example:
+
+    > Create a private API that accepts a company name and returns its latest
+    > funding round, amount, date, investors, and primary-source URLs. Then show
+    > me how to call it from this project.
+  </Step>
+</Steps>
+
+## Use the skill without a CLI
+
+The skill works through ordinary authenticated HTTPS requests. It can use
+`curl`, JavaScript `fetch`, an IDE HTTP tool, or the existing HTTP client in any
+project language. Python and the Critique CLI are not required.
+
+The agent reads the lifecycle contract from the skill, sends
+`X-API-Key: $CRITIQUE_API_KEY`, and uses the `integration` object returned by
+the server as the source of truth for running the new endpoint.
+
+## Install the CLI (optional)
+
+The optional, open-source CLI package is `critique-api-cli` and has no third-party
+runtime dependencies. Its source is available on
+[GitHub](https://github.com/parthh01/critique-api-cli).
+
+```bash
+pipx install critique-api-cli
+critique-api --help
+```
+
+The CLI is a standalone convenience for terminal workflows. It does not need to
+be installed into the user's application or added to that project's
+dependencies. After setting `CRITIQUE_API_KEY`:
+
+```bash
+critique-api create \
+  --prompt "For a company name, return its latest funding round, investors, date, amount, and primary-source citations."
+```
+
+## Install the skill
+
+The downloaded archive contains a `SKILL.md` and the API contract reference.
+Import the `create-critique-apis` folder using your agent client's skill
+workflow. No language runtime or package installation is required:
+
+```bash
+curl --fail-with-body \
+  --output create-critique-apis.zip \
+  https://api.critique-labs.ai/agent-integrations/create-critique-apis.zip
+unzip create-critique-apis.zip
+```
+
+The integration prompt and resource URLs are also available without
+authentication for automated discovery:
+
+```bash
+curl --fail-with-body https://api.critique-labs.ai/v1/agent-integration
+```
+
+## Endpoint lifecycle
+
+All management and runtime requests use the `X-API-Key` header. These examples
+assume `CRITIQUE_API_KEY` is set in the environment.
+
+### Create
+
+The only required create field is `original_prompt`.
+
+```bash
+curl --fail-with-body --request POST \
+  https://api.critique-labs.ai/v1/design-api \
+  --header "Content-Type: application/json" \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  --data '{
+    "original_prompt": "For a company name, return its latest funding round, investors, date, amount, and primary-source citations."
+  }'
+```
+
+The response is wrapped in `response`. Treat `response.integration` as the
+authoritative handoff: it contains the final callable URL, authentication
+contract, request and response JSON Schemas, an example request, runnable code,
+and a short agent handoff.
+
+```json
+{
+  "response": {
+    "id": 42,
+    "api_name": "Latest company funding",
+    "stub": "latest-company-funding",
+    "inputs": [{ "name": "company", "type": "string" }],
+    "output_format": {
+      "company": "string",
+      "amount": "number",
+      "date": "string",
+      "investors": [{ "name": "string" }]
+    },
+    "integration": {
+      "method": "POST",
+      "url": "https://api.critique-labs.ai/v1/user-defined-service/latest-company-funding",
+      "request_schema": {},
+      "response_schema": {},
+      "example_request": { "company": "<company>" },
+      "code": {
+        "curl": "...",
+        "python": "...",
+        "javascript": "..."
+      },
+      "agent_handoff": "..."
+    }
+  }
+}
+```
+
+<Note>
+  Do not construct the runtime URL from the stub when an `integration.url` is
+  available. The server-returned integration object is the source of truth.
+</Note>
+
+### Inspect and modify
+
+```bash
+# List your private endpoints
+curl --fail-with-body \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  https://api.critique-labs.ai/v1/design-api
+
+# Inspect one endpoint
+curl --fail-with-body \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  https://api.critique-labs.ai/v1/design-api/42
+
+# Send only the fields that should change
+curl --fail-with-body --request PATCH \
+  https://api.critique-labs.ai/v1/design-api/42 \
+  --header "Content-Type: application/json" \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  --data '{
+    "inputs": [{ "name": "company", "type": "string" }],
+    "output_format": {
+      "company": "string",
+      "amount": "number",
+      "announced": "boolean",
+      "investors": [{ "name": "string" }]
+    }
+  }'
+```
+
+Input names must begin with a letter or underscore and may contain letters,
+numbers, and underscores. Supported input types are `string`, `number`, and
+`boolean`. Output formats support nested objects and one-item array schemas in
+addition to `string`, `number`, `boolean`, and `integer` values.
+
+### Run
+
+POST a body matching `integration.request_schema` to `integration.url`:
+
+```bash
+curl --fail-with-body --request POST \
+  https://api.critique-labs.ai/v1/user-defined-service/latest-company-funding \
+  --header "Content-Type: application/json" \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  --data '{ "company": "OpenAI" }'
+```
+
+A successful runtime response contains the structured result, its source list,
+and usage information:
+
+```json
+{
+  "response": {
+    "company": "OpenAI",
+    "amount": 6600000000,
+    "date": "2024-10-02",
+    "investors": [{ "name": "Thrive Capital" }]
+  },
+  "context": [
+    {
+      "id": 1,
+      "metadata": {
+        "title": "Source title",
+        "url": "https://example.com/source",
+        "content": "Relevant source content"
+      }
+    }
+  ],
+  "info": { "token_usage": 123 }
+}
+```
+
+Preserve `context` when displaying or storing researched output so its source
+URLs remain available to users.
+
+### Delete
+
+Deletion is permanent. Confirm the endpoint ID before calling:
+
+```bash
+curl --fail-with-body --request DELETE \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  https://api.critique-labs.ai/v1/design-api/42
+```
+
+## Optional domain controls
+
+Runtime bodies may include `include_domains` or `exclude_domains` as an array of
+domain strings. They are mutually exclusive.
+
+```json
+{
+  "company": "OpenAI",
+  "include_domains": ["openai.com", "sec.gov"]
+}
+```
+
+## Error handling
+
+- `400` or `422`: correct the request or schema; do not retry unchanged.
+- `401`: verify that `CRITIQUE_API_KEY` is available without printing it.
+- `404`: list endpoints and confirm that the ID belongs to the current key.
+- `429`: respect the rate limit before retrying.
+- `504`: the research request exceeded the service deadline.
+
+See [API rate limits](/api-reference/rate-limits) for current plan limits.
