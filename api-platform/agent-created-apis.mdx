@@ -31,10 +31,16 @@ and integrates it into your project with ordinary HTTPS.
     Open [API Studio](https://critique-labs.ai/en/design) and select
     **Set up an agent** beside the manual API description form.
 
-    - **Copy prompt** copies the current, server-provided integration prompt.
-    - **Open ChatGPT** or **Open Claude** copies the prompt and opens a new chat.
-    - **Download skill** downloads the transport-neutral
-      `create-critique-apis` instructions and API contract.
+    - **Copy prompt** copies the current, server-provided integration prompt
+      (select **Show prompt** to read it before copying). Paste it into any
+      agent chat; it works without installing anything.
+    - **Copy & open ChatGPT** or **Copy & open Claude** copies the prompt and
+      opens a new chat.
+    - **Use it in Claude Code, Cursor or Codex** shows, per tool, the one-line
+      install (`npx skills add …` or the Claude Code plugin commands) and how to
+      invoke the skill.
+    - **Documentation your agent can read** links the LLM documentation index,
+      the full-documentation bundle, this guide, and the OpenAPI contract.
 
     A browser chat can help plan the endpoint, but it still needs a connected
     tool or coding environment that can read `CRITIQUE_API_KEY` and make HTTPS
@@ -83,23 +89,56 @@ critique-api create \
 
 ## Install the skill
 
-The downloaded archive contains a `SKILL.md` and the API contract reference.
-Import the `create-critique-apis` folder using your agent client's skill
-workflow. No language runtime or package installation is required:
+The skill lives in the public
+[`parthh01/critique-api-cli`](https://github.com/parthh01/critique-api-cli)
+repository. Install it into Claude Code, Cursor, Codex or any other agent
+supported by [skills.sh](https://skills.sh) with one command (it writes the
+skill into each tool's own skills directory; add `-g` to install for all
+projects instead of the current one):
 
 ```bash
-curl --fail-with-body \
-  --output create-critique-apis.zip \
-  https://api.critique-labs.ai/agent-integrations/create-critique-apis.zip
-unzip create-critique-apis.zip
+npx skills add parthh01/critique-api-cli -y
 ```
 
-The integration prompt and resource URLs are also available without
-authentication for automated discovery:
+Or install it as a Claude Code plugin from the repo's marketplace:
+
+```text
+/plugin marketplace add parthh01/critique-api-cli
+/plugin install critique@critique-labs
+```
+
+| Tool | Install | Invoke |
+| --- | --- | --- |
+| Claude Code | the two `/plugin` commands above, or `npx skills add parthh01/critique-api-cli -a claude-code -y` | `/critique:create-critique-apis` (plugin) or `/create-critique-apis` (skill) |
+| Cursor | `npx skills add parthh01/critique-api-cli -a cursor -y` | Type `/` in Agent chat and pick the skill |
+| Codex | `npx skills add parthh01/critique-api-cli -a codex -y` | `$create-critique-apis` |
+
+Each tool also applies the skill automatically when a task matches its
+description. Make sure `CRITIQUE_API_KEY` is exported in the shell the agent
+runs in.
+
+The integration prompt, these per-tool commands (`clients`), and the resource
+URLs are also available without authentication for automated discovery; the raw
+skill files remain downloadable as a zip for agents that fetch them directly:
 
 ```bash
 curl --fail-with-body https://api.critique-labs.ai/v1/agent-integration
 ```
+
+## Documentation for agents
+
+This documentation is written to be read by LLMs as well as people:
+
+- [`llms.txt`](https://docs.critique-labs.ai/llms.txt) is the index of every
+  page. Agents should fetch it first when they need something a prompt does not
+  cover.
+- Every page is available as Markdown: append `.md` to a page URL that does not
+  already end in `.md` (this page is
+  `https://docs.critique-labs.ai/api-platform/agent-created-apis.md`).
+- [`llms-full.txt`](https://docs.critique-labs.ai/llms-full.txt) bundles every
+  page into one file, each prefixed with a `Source:` line, for a single fetch.
+- [`openapi.json`](https://api.critique-labs.ai/openapi.json) is the
+  machine-readable contract for every endpoint.
 
 ## Endpoint lifecycle
 
@@ -179,7 +218,11 @@ curl --fail-with-body --request PATCH \
   --header "Content-Type: application/json" \
   --header "X-API-Key: $CRITIQUE_API_KEY" \
   --data '{
-    "inputs": [{ "name": "company", "type": "string" }],
+    "inputs": [
+      { "name": "company", "type": "string", "required": true, "default": null },
+      { "name": "region", "type": "string", "required": false, "default": null },
+      { "name": "max_results", "type": "number", "required": false, "default": 10 }
+    ],
     "output_format": {
       "company": "string",
       "amount": "number",
@@ -193,6 +236,73 @@ Input names must begin with a letter or underscore and may contain letters,
 numbers, and underscores. Supported input types are `string`, `number`, and
 `boolean`. Output formats support nested objects and one-item array schemas in
 addition to `string`, `number`, `boolean`, and `integer` values.
+
+#### Optional inputs and defaults
+
+Each input carries `required` (default `true`) and `default` (default `null`).
+Inputs created before these keys existed are required with no default, and
+nothing about them changed.
+
+- A non-null `default` must match the input's `type` and makes the input
+  optional whatever `required` says.
+- Callers may omit any optional input (sending `null` counts as omitting it).
+  The endpoint fills in the default, or,
+  when the default is `null`, tells the agent the value was not provided.
+- A missing required input responds `400`; the message lists only the missing
+  required fields, with optional ones shown as `name?: type`.
+- `integration.request_schema` marks only required inputs as required and
+  carries each default; `integration.example_request` and the code samples
+  include every required input plus every optional input that has a default.
+
+`max_results` is a reserved input name. An endpoint whose output contains a
+list is created with an optional `max_results` (type `number`, default `10`);
+the runtime asks the agent for at most that many items and caps every top-level
+list field of the response at that value (nested lists are left to the agent).
+The value must be a number of at least 1 and is floored to an integer.
+
+### Versions
+
+Every endpoint version is its own resource with its own `id`; all versions share
+the endpoint's `stub`. A version is a **draft** while `frozen_at` is `null`
+(editable; at most one per endpoint) and **released** once `frozen_at` is set
+(immutable; edits respond `409`). The **live** version is what the unversioned
+URL `/v1/user-defined-service/{stub}` runs: the released version with the
+highest number, or the only draft when nothing has ever been released, which is
+the normal state of a freshly created endpoint. Every response carries
+`version`, `frozen_at`, `is_live`, `live_version` and a `versions` list for the
+whole lineage.
+
+```bash
+# Release the current draft: it becomes immutable and live
+curl --fail-with-body --request POST \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  https://api.critique-labs.ai/v1/design-api/42/release
+
+# Create the next version: copies v42 into a new editable draft
+curl --fail-with-body --request POST \
+  https://api.critique-labs.ai/v1/design-api/42/versions \
+  --header "Content-Type: application/json" \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  --data '{"version_notes": "added the funding_stage output field"}'
+
+# List the lineage; add ?all_versions=true to GET /v1/design-api for every version
+curl --fail-with-body \
+  --header "X-API-Key: $CRITIQUE_API_KEY" \
+  https://api.critique-labs.ai/v1/design-api/42/versions
+```
+
+If the version you copy is the current draft it is released first, so callers on
+the unversioned URL keep the behaviour they tested. Creating a version while
+another unreleased draft exists responds `409`: release or delete that draft
+first. Publishing a version to the marketplace also releases it. Creating a
+version from an older released one is how you revert; the copy becomes live
+once you release it.
+
+Always call `integration.url`. For the live version it is the unversioned URL;
+for a draft that is not live, and for an older release, it is the pinned URL
+`/v1/user-defined-service/{stub}/v{n}`, the only URL that runs that version.
+`integration.versioned_url` is always the pinned URL. A pinned version that does
+not exist responds `404`.
 
 ### Run
 
@@ -260,7 +370,11 @@ domain strings. They are mutually exclusive.
 
 - `400` or `422`: correct the request or schema; do not retry unchanged.
 - `401`: verify that `CRITIQUE_API_KEY` is available without printing it.
-- `404`: list endpoints and confirm that the ID belongs to the current key.
+- `404`: list endpoints and confirm that the ID belongs to the current key. On
+  a `/v{n}` invocation, confirm the version exists with
+  `GET /v1/design-api/{id}/versions`.
+- `409`: the version is released (immutable) or the endpoint already has an
+  unreleased draft. Create or release a version instead of retrying.
 - `429`: respect the rate limit before retrying.
 - `504`: the research request exceeded the service deadline.
 

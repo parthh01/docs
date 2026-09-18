@@ -11,8 +11,8 @@ endpoint. The manual builder is available at
 
 If you want a coding agent to create and integrate the endpoint for you, select
 **Set up an agent** beside the API description form. You can copy the setup
-prompt, open it in ChatGPT or Claude, or download the skill package for Codex,
-Claude Code, Cursor, and other clients that support agent skills.
+prompt, open it in ChatGPT or Claude, or follow the per-tool steps for Claude
+Code, Cursor, and Codex to install the downloadable skill package.
 
 <Note>
   The manual builder and agent workflow create the same kind of private API.
@@ -54,6 +54,26 @@ Claude Code, Cursor, and other clients that support agent skills.
     `CRITIQUE_API_KEY` environment variable.
   </Step>
 </Steps>
+
+## Versions
+
+Every saved API is versioned. The Studio header shows the version you are
+editing (`v1`, `v2`, ...) and its state:
+
+- **Live**: the version the unversioned endpoint URL runs. A freshly created
+  API is live and still editable, so edits go live immediately until you
+  release it.
+- **Released**: immutable. Select **Release** to lock a version in; from then
+  on the unversioned URL runs the newest released version.
+- **Draft**: an editable working copy that is not live, created with **New
+  version** after a release. It runs only at its pinned `/v{n}` URL until you
+  release it.
+
+Select **New version** to copy the current version into a new draft (if the
+current version is the draft, it is released first). An API can have only one
+draft at a time. Publishing a version to the marketplace also releases it, and
+older versions stay callable at their pinned URLs. The **Run** step always shows
+the URL that runs the version you are looking at.
 
 ## Build with an agent
 

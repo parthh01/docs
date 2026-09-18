@@ -6,7 +6,7 @@ description: 'Privacy policy for users of check-ride.ai'
 # Privacy Policy
 
 **Effective Date:** July 27, 2025  
-**Last Updated:** September 11, 2026
+**Last Updated:** September 18, 2026
 
 ## Overview
 
@@ -38,11 +38,18 @@ We use your information to:
 
 ## Voice and AI Processing
 
-When you first start a voice session in the iOS app, we ask for permission to use your microphone and process your voice data. The app remembers your choice. You can decline, in which case a voice session will not start, or withdraw permission later in the app's Privacy settings and the iOS microphone settings.
+Before the iOS app prepares your first practice session or connects a voice session, we ask for permission to send session data for the processing described below. The app remembers your permission for the current disclosure; you do not need to approve each session. You can decline, in which case session preparation and voice connection will not proceed, or withdraw permission in the app's Privacy settings. iOS microphone permission is requested separately before audio capture and can also be withdrawn in iOS settings.
 
-To provide a live mock oral exam, microphone audio, spoken answers, and session setup are sent to check-ride.ai. Depending on the voice system currently in use, this data may be processed by AI service providers, including Google, to transcribe speech, generate examiner responses, and produce spoken audio. We may also process this data using our own systems. We do not send your account password or payment-card information to AI providers.
+Practice sessions use remote processing: microphone audio, spoken answers, session setup, and relevant training context are sent to check-ride.ai. We use these named providers for the following purposes:
 
-Our service providers may change as we improve or bring more processing onto our own infrastructure. Any provider acting for us is permitted to process the data only to provide the contracted service and must maintain privacy and security protections at least as protective as those described in this policy and required by applicable law.
+- **OpenAI:** Receives session setup and relevant training context to prepare practice scenarios and organize the ACS topics covered by the session. It also receives relevant transcript and assessment context to evaluate answers and credit demonstrated knowledge across ACS topics.
+- **Deepgram:** Receives microphone audio to transcribe your spoken answers.
+- **Google:** Receives transcripts, session setup, and relevant conversation and assessment context to generate examiner responses and assessments. It also receives examiner response text to generate spoken audio.
+- **Tavily:** When source research uses this provider, receives relevant questions and session details, such as the aircraft description or selected airport, to find supporting sources. This does not require sending your microphone audio.
+
+Our own Critique AI service, also operated by Starman LLC, uses relevant session assessments and training context to generate study guidance and research supporting sources. Only data relevant to a provider's role is sent to that provider; not every provider receives every type of session data. We do not send your account password or payment-card information to AI providers.
+
+If we change the providers or data uses covered by the iOS disclosure, we update the disclosure and ask for permission again before using the changed processing. Any provider acting for us is permitted to process the data only to provide the contracted service and must maintain privacy and security protections at least as protective as those described in this policy and required by applicable law.
 
 ## Data Protection and Security
 
