@@ -1,136 +1,92 @@
 ---
 title: 'Browser Extension Privacy Policy'
-description: 'Privacy policy for the Critique AI browser extension'
+description: 'Privacy policy for the Critique browser extension'
 ---
 
-This Privacy Policy describes how we collect, use, and handle your information when you use our browser extension. By installing and using our extension, you agree to the collection and use of information in accordance with this policy.
+**Effective Date:** November 1, 2026
 
-## Designed with Privacy in Mind
+## 1. Introduction
 
-### Information We Collect
-When you use our browser extension, we collect anonymous performance data:
-1. Selected Text: Content you specifically highlight or select for fact-checking
-2. Page Context: URLs and relevant page content necessary for analysis
-3. Images: Visual content you specifically select for verification
-4. Extension Settings: Your preferences and configuration choices
-5. Performance Data: Anonymous usage statistics and error reports
+This Privacy Policy explains what the Critique browser extension ("Critique", "we", "our", "us") collects, where it goes, how long we keep it, and the choices you have. It covers the extension and the Critique service it connects to.
 
-### Technical Data
-We automatically collect:
-1. Browser type and version
-2. Extension installation status
-3. Feature interaction metrics
-4. Error logs and debugging information
-5. API communication logs
+## 2. Summary
+- Critique sends the content you ask it to critique, and the content it critiques automatically on supported sites, to our servers and to the AI and search providers named in section 6, so it can return a critique.
+- Your critique history is stored only in your browser. It is not uploaded to our servers.
+- We do not sell your personal information, we do not use it for advertising, and we do not use your content to train or improve AI models.
+- We do not use analytics or tracking tools in the extension.
+- Critique never reads Protected Pages (section 3.g).
 
-## Data Usage
+## 3. Information We Collect
 
-### Core Functionality
-We use collected information to:
-1. Provide fact-checking and verification services
-2. Process your specific analysis requests
-3. Generate accurate and relevant responses
-4. Maintain and improve extension functionality
-5. Debug and optimize performance
+**a. Your account.** You sign in through Auth0 with an email address or a sign-in provider such as Google. We receive your account identifier, email address and name. We use them to sign you in, to apply your plan and daily limit, and to contact you about your account.
 
-### Service Improvement
-We collect anonymous performance data to:
-1. Enhance extension reliability
-2. Improve response accuracy
-3. Optimize user experience
-4. Identify and fix technical issues
-5. Develop new features
+**b. Automatic critique.** On supported sites (such as LinkedIn, Reddit, X, Bluesky, Threads and news articles) and on other sites where you have turned it on, Critique sends the text of the post, comment or article it is critiquing to our servers, together with the surrounding text it needs for context, the name of the site, and the persona and instructions you set in Settings.
 
-## Data Protection
+**c. Critiques you request.** When you select text and ask for a critique, Critique sends the selected text, the page's address (URL), and your prompt. When you ask Critique to critique an image, it captures a screenshot of the visible part of the tab and sends it with the area you selected and your prompt.
 
-### Security Measures
-We implement robust security measures including:
-1. Industry-standard encryption for all data transmission
-2. Secure storage protocols for any retained data
-3. Regular security audits and updates
-4. Access controls and authentication
-5. Automated threat detection
+**d. Side panel chat.** When you chat in the side panel, Critique sends your messages. If you add open tabs to a chat, it also sends each tab's address, title and text.
 
-### Data Minimization
-We follow strict data minimization principles:
-1. We only collect information necessary for service operation
-2. We process data only for stated purposes
-3. We retain data only for the minimum necessary period
-4. We automatically delete unnecessary data
-5. We anonymize data used for analytics
+**e. Ratings.** If you rate a critique with thumbs up or down, Critique sends your rating, the critique, and the text it was about.
 
-## Your Rights and Controls
+**f. Usage and billing.** We count how many critiques you use each day, to apply your plan's limits. If you subscribe, Stripe processes your payment. We receive your Stripe customer identifier and subscription status, never your full card details.
 
-### User Rights
-You have the right to:
-1. Access your personal data
-2. Request data deletion
-3. Opt out of non-essential data collection
-4. Export your data
-5. Modify extension permissions
+**g. Protected Pages.** Critique never reads Protected Pages, regardless of your settings. Protected Pages include sign-in and password pages, mail, banking, document editors, checkout and local hosts.
 
-### Privacy Controls
-The extension provides:
-1. Configurable privacy settings
-2. Data collection toggles
-3. Permission management
-4. History clearing options
-5. Usage control features
+**h. What we do not collect.** We do not collect your browsing history. We do not run analytics, advertising or tracking tools in the extension. Critique only reads a page when one of the features above runs on it.
 
-## Data Sharing
+## 4. How We Use Your Information
+- To analyze content and return critiques, citations and chat answers.
+- To run your account, apply your plan's limits and process billing.
+- To keep the service working and diagnose problems.
+- To protect Critique and its users from abuse and fraud, and to meet legal obligations.
 
-### Third-Party Services
-We do not sell your data. We may share data with:
-1. Service providers necessary for operation
-2. Analytics tools (anonymized data only)
-3. Cloud infrastructure providers
-4. Security monitoring services
+## 5. What We Store and for How Long
 
-### Legal Requirements
-We may disclose information:
-1. In response to valid legal requests
-2. To protect our rights or property
-3. To prevent illegal activities
-4. To comply with applicable laws
-5. With your explicit consent
+**a. In your browser.** Critique stores these only on your device:
+- **Critique history:** the page address and title, the text critiqued, the critique and its sources. History is kept for up to 90 days or 2,000 critiques, whichever comes first. It is deleted when you clear it, sign out, or uninstall the extension. It is not uploaded or synced to our servers.
+- **Recent results:** a short-lived copy of recent critiques, kept for up to 30 minutes so pages load faster.
+- **Settings and sign-in:** your settings, and the tokens that keep you signed in.
 
-## Data Retention
+**b. On our servers.** We store:
+- **Critique records:** the content sent for automatic and text critiques (section 3.b and 3.c), with the critique we returned and your account identifier. Screenshots from image critiques are not stored.
+- **Chats:** your side panel chat messages and replies, and the address and title of any tabs you added. The text of those tabs is not stored. You can delete a chat in the side panel, which deletes its messages.
+- **Ratings:** your ratings and the critique and text they refer to.
+- **Usage:** your daily critique count.
+- **Quality checks:** a sample of critiqued text, with the result of our fact-checking, not linked to your account. It is deleted after 30 days.
+We keep this data until you delete it (section 7) or ask us to delete your account. Our server logs do not contain the content you send for critique, your screenshots or your chat messages.
 
-### Retention Periods
-1. Active session data: Duration of analysis
-2. Error logs: 30 days
-3. Anonymous analytics: 90 days
-4. User preferences: Until account deletion
-5. Extension settings: Until uninstallation
+## 6. Service Providers
 
-### Data Deletion
-Upon extension uninstallation:
-1. Local data is immediately removed
-2. Server data is deleted within 30 days
-3. Anonymized analytics may be retained
-4. Backup data is purged within 90 days
+We do not sell your personal information. We share it only with these providers, only so they can provide the service to us:
+- **OpenAI:** receives the content described in section 3.b to 3.d, including screenshots, to produce critiques and chat answers.
+- **TypeSafe:** receives a sample of critiqued text to help check factual claims.
+- **Serper and our search service hosted on Google Cloud:** receive search queries generated from the content being critiqued, to find sources.
+- **Auth0 (Okta):** handles sign-in and stores your account details.
+- **Stripe:** handles subscriptions and payments.
+- **Cloud infrastructure providers:** host our servers, database and AI models, and process data only on our instructions.
+To find sources, our servers may also visit the public web pages cited in a critique. We may disclose information if required by law, or to protect the rights and safety of Critique and its users.
 
-## Anonymous Analytics
+## 7. Your Choices and Rights
+- **Control what runs:** you can turn off automatic critique, choose the sites it runs on, and pause Critique, all in Settings.
+- **Manage your history:** in the extension's History section you can delete single critiques, clear a time range or all of it, and export it. Signing out or uninstalling also removes it from your browser.
+- **Delete chats:** you can delete any side panel chat.
+- **Export or delete your data:** in the extension's account section you can download a copy of the data we hold about you, or delete it from our servers. To delete your account as well, or if you cannot use the extension, email the address in section 11. We will respond within 30 days.
+Depending on where you live, you may have additional rights under laws such as the GDPR or CCPA, including to correct your data or object to how we use it. Contact us to exercise them.
 
-We collect anonymous performance metrics that:
-1. Contain no personally identifiable information
-2. Are used solely for service improvement
-3. Are aggregated before analysis
-4. Are never sold or shared for marketing
-5. Can be opted out of through extension settings
+## 8. Data Security
 
-## Changes to This Policy
+Data travels between the extension and our servers over encrypted connections, and access to our servers and database is restricted. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.
 
-We may update this Privacy Policy periodically. We will notify you of any changes by:
-1. Posting updates in the extension
-2. Updating our website
-3. Providing in-app notifications
-4. Obtaining consent where required
+## 9. Children's Privacy
 
-## Contact Us
+Critique is not intended for anyone under 13. We do not knowingly collect personal information from children under 13. If we learn that we have, we will delete it.
 
-For privacy-related inquiries:
-- Email: support@critique-labs.ai
+## 10. Changes to This Privacy Policy
 
-## Updates
-Last Updated: 2/10/2025 
+We may update this policy. When we do, we will change the Effective Date above, and for significant changes we will notify you in the extension.
+
+## 11. Contact Us
+
+If you have questions about this policy or want to exercise your rights, contact us at:
+
+**Email:** chris@critique-labs.ai
