@@ -3,36 +3,42 @@ title: 'Browser Extension Privacy Policy'
 description: 'Privacy policy for the Critique browser extension'
 ---
 
-**Effective Date:** November 1, 2026
+**Effective Date:** November 16, 2026
 
 ## 1. Introduction
 
 This Privacy Policy explains what the Critique browser extension ("Critique", "we", "our", "us") collects, where it goes, how long we keep it, and the choices you have. It covers the extension and the Critique service it connects to.
 
 ## 2. Summary
-- Critique sends the content you ask it to critique, and the content it critiques automatically on supported sites, to our servers and to the AI and search providers named in section 6, so it can return a critique.
+- Critique checks posts, comments and articles automatically on most websites. It sends that content, and anything you ask it to critique, to our servers and to the providers named in section 6, so it can return a critique.
 - Your critique history is stored only in your browser. It is not uploaded to our servers.
 - We do not sell your personal information, we do not use it for advertising, and we do not use your content to train or improve AI models.
 - We do not use analytics or tracking tools in the extension.
-- Critique never reads Protected Pages (section 3.g).
+- Automatic critique skips Protected Pages (section 3.g).
 
 ## 3. Information We Collect
 
 **a. Your account.** You sign in through Auth0 with an email address or a sign-in provider such as Google. We receive your account identifier, email address and name. We use them to sign you in, to apply your plan and daily limit, and to contact you about your account.
 
-**b. Automatic critique.** On supported sites (such as LinkedIn, Reddit, X, Bluesky, Threads and news articles) and on other sites where you have turned it on, Critique sends the text of the post, comment or article it is critiquing to our servers, together with the surrounding text it needs for context, the name of the site, and the persona and instructions you set in Settings.
+**b. Automatic critique.** Critique checks posts, comments and articles automatically on most websites, except Protected Pages (section 3.g) and sites you skip. It has dedicated readers for sites such as Reddit, YouTube, X, LinkedIn, Bluesky and Threads, and a general reader for other pages. It sends the text of the post, comment or article it is critiquing to our servers, together with the surrounding text it needs for context, the page's address (URL), the name of the site, and the persona and instructions you set in Settings.
 
-**c. Critiques you request.** When you select text and ask for a critique, Critique sends the selected text, the page's address (URL), and your prompt. When you ask Critique to critique an image, it captures a screenshot of the visible part of the tab and sends it with the area you selected and your prompt.
+**c. Critiques you request.** When you select text and ask for a critique, Critique sends the selected text, the page's address (URL), your prompt, and the persona, instructions and blocked sources you set in Settings. When you ask Critique to critique an image, it captures a screenshot of the visible part of the tab and sends it with the area you selected and your prompt.
 
 **d. Side panel chat.** When you chat in the side panel, Critique sends your messages. If you add open tabs to a chat, it also sends each tab's address, title and text.
 
-**e. Ratings.** If you rate a critique with thumbs up or down, Critique sends your rating, the critique, and the text it was about.
+**e. Ratings.** If you rate a critique or a side panel answer with thumbs up or down, Critique sends your rating, the critique or answer, and the text it was about.
 
 **f. Usage and billing.** We count how many critiques you use each day, to apply your plan's limits. If you subscribe, Stripe processes your payment. We receive your Stripe customer identifier and subscription status, never your full card details.
 
-**g. Protected Pages.** Critique never reads Protected Pages, regardless of your settings. Protected Pages include sign-in and password pages, mail, banking, document editors, checkout and local hosts.
+**g. Protected Pages.** Automatic critique never runs on:
+- sign-in, account, settings, checkout, cart, payment, billing, inbox and message pages;
+- pages that show a password, payment card or one-time code field;
+- pages labelled as adult content;
+- local addresses and private networks.
 
-**h. What we do not collect.** We do not collect your browsing history. We do not run analytics, advertising or tracking tools in the extension. Critique only reads a page when one of the features above runs on it.
+It also skips sites in these categories, unless you add the site as an exception in Settings: email, messaging, banking, investing and crypto, payments and credit, health, insurance, government and tax, password managers and sign-in, HR and payroll, dating, personal documents and drives, and admin consoles. Features you start yourself (selection and image critique, and adding a tab to a side panel chat) run on the page you choose.
+
+**h. What we do not collect.** We do not collect your browsing history. We do not run analytics, advertising or tracking tools in the extension. Critique only reads a page when one of the features above runs on it. To show the icons of cited sources and of pages in your history, the extension loads each icon directly from that website, which can see your IP address, as it would if you visited it.
 
 ## 4. How We Use Your Information
 - To analyze content and return critiques, citations and chat answers.
@@ -44,33 +50,37 @@ This Privacy Policy explains what the Critique browser extension ("Critique", "w
 
 **a. In your browser.** Critique stores these only on your device:
 - **Critique history:** the page address and title, the text critiqued, the critique and its sources. History is kept for up to 90 days or 2,000 critiques, whichever comes first. It is deleted when you clear it, sign out, or uninstall the extension. It is not uploaded or synced to our servers.
-- **Recent results:** a short-lived copy of recent critiques, kept for up to 30 minutes so pages load faster.
-- **Settings and sign-in:** your settings, and the tokens that keep you signed in.
+- **Recent results:** a short-lived copy of recent critiques, kept for up to 30 minutes so pages load faster. It is deleted when you sign out.
+- **Settings and sign-in:** your settings (including your skipped sites, exceptions, and display and usage preferences), a copy of your daily usage, and the tokens that keep you signed in.
 
 **b. On our servers.** We store:
-- **Critique records:** the content sent for automatic and text critiques (section 3.b and 3.c), with the critique we returned and your account identifier. Screenshots from image critiques are not stored.
+- **Critique records:** the content sent for automatic critique (section 3.b), with the result we returned and your account identifier, including checks that found nothing to critique. Text and screenshots you send for selection and image critiques (section 3.c) are processed to return the critique and are not stored.
 - **Chats:** your side panel chat messages and replies, and the address and title of any tabs you added. The text of those tabs is not stored. You can delete a chat in the side panel, which deletes its messages.
-- **Ratings:** your ratings and the critique and text they refer to.
+- **Ratings:** your ratings and the critique or answer and text they refer to.
 - **Usage:** your daily critique count.
-- **Quality checks:** a sample of critiqued text, with the result of our fact-checking, not linked to your account. It is deleted after 30 days.
+- **Quality checks:** copies of text from automatic critiques, with its context and the result of our fact-checking, not linked to your account. They are deleted after 30 days.
+
 We keep this data until you delete it (section 7) or ask us to delete your account. Our server logs do not contain the content you send for critique, your screenshots or your chat messages.
 
 ## 6. Service Providers
 
 We do not sell your personal information. We share it only with these providers, only so they can provide the service to us:
-- **OpenAI:** receives the content described in section 3.b to 3.d, including screenshots, to produce critiques and chat answers.
-- **TypeSafe:** receives a sample of critiqued text to help check factual claims.
-- **Serper and our search service hosted on Google Cloud:** receive search queries generated from the content being critiqued, to find sources.
+- **OpenAI:** receives the content described in sections 3.b to 3.d, including screenshots, to produce critiques and chat answers.
+- **TypeSafe:** receives text from automatic critiques to help check factual claims.
+- **Serper:** receives search queries generated from the content being critiqued, to find sources.
 - **Auth0 (Okta):** handles sign-in and stores your account details.
 - **Stripe:** handles subscriptions and payments.
-- **Cloud infrastructure providers:** host our servers, database and AI models, and process data only on our instructions.
+- **Google (Gmail):** sends our account and trial emails to your email address.
+- **Cloud infrastructure providers:** host our servers and database, and process data only on our instructions.
+
 To find sources, our servers may also visit the public web pages cited in a critique. We may disclose information if required by law, or to protect the rights and safety of Critique and its users.
 
 ## 7. Your Choices and Rights
-- **Control what runs:** you can turn off automatic critique, choose the sites it runs on, and pause Critique, all in Settings.
+- **Control what runs:** you can turn Critique off from its toolbar button, skip sites, and add exceptions in Settings.
 - **Manage your history:** in the extension's History section you can delete single critiques, clear a time range or all of it, and export it. Signing out or uninstalling also removes it from your browser.
 - **Delete chats:** you can delete any side panel chat.
-- **Export or delete your data:** in the extension's account section you can download a copy of the data we hold about you, or delete it from our servers. To delete your account as well, or if you cannot use the extension, email the address in section 11. We will respond within 30 days.
+- **Export or delete your data:** in the extension's account section, or in Settings under History and data, you can download a copy of the data we hold about you, or delete it from our servers. To delete your account as well, or if you cannot use the extension, email the address in section 11. We will respond within 30 days.
+
 Depending on where you live, you may have additional rights under laws such as the GDPR or CCPA, including to correct your data or object to how we use it. Contact us to exercise them.
 
 ## 8. Data Security
